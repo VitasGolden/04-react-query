@@ -12,12 +12,13 @@ const tmdbKey = import.meta.env.VITE_TMDB_TOKEN
 
 export const fetchMovies = async (
 	query: string,
+	page: number,
 ): Promise<MoviesHttpResponse> => {
 	console.log('Токен:', tmdbKey)
 	const response = await axios.get<MoviesHttpResponse>(
 		`https://api.themoviedb.org/3/search/movie`,
 		{
-			params: { query: query },
+			params: { query: query, page: page },
 			headers: {
 				accept: 'application/json',
 				Authorization: `Bearer ${tmdbKey}`,
